@@ -24,9 +24,12 @@ def main():
         try:
             a = float(input("Ingrese el primer número: "))
             b = float(input("Ingrese el segundo número: "))
-        except ValueError:
-            logger.error("Entrada inválida: Se esperaban números.")
-            print("Por favor, ingrese números válidos.")
+
+            if not a.is_integer() or not b.is_integer():
+                raise ValueError("Los números deben ser enteros.")
+        except ValueError as e:
+            logger.error(f"Entrada inválida: {str(e)}")
+            print(f"Por favor, ingrese dos números enteros.")
             continue
 
         operacion = input("Elija una operación (+, -, *, /): ")
