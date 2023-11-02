@@ -34,21 +34,19 @@ def main():
         if operacion in operaciones:
             if operacion == '/' and b == 0:
                 print("Error: No es posible dividir entre cero.")
-                continue
-            try:
-                resultado = operaciones[operacion](a, b)
-            except Exception as e:
-                logger.error(f"Error en la operación: {str(e)}")
-                continue
+            else:
+                try:
+                    resultado = operaciones[operacion](a, b)
+                    print(f"Resultado: {resultado}")
+                except ValueError as e:
+                    logger.error(f"Error en la operación: {str(e)}")
         else:
             logger.error("Operación no válida.")
             print("Operación no válida")
             continue
 
-        print(f"Resultado: {resultado}")
-
         salir = input("¿Desea salir? (si/no): ").lower()
-        if salir == "si":
+        if 'si' in salir:
             break
 
     for operacion in calculadora.historial:
